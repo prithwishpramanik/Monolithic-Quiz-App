@@ -22,7 +22,12 @@ public class QuestionService {
     }
 
     public ResponseEntity<List<Question>> getQuestionByCatagory(String cat) {
-        return new ResponseEntity<>(questionDao.findByCategory(cat),HttpStatus.OK);
+        try{
+            return new ResponseEntity<>(questionDao.findByCategory(cat),HttpStatus.OK);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
 
