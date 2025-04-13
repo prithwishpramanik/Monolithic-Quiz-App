@@ -3,6 +3,7 @@ package com.quizApp.quizApp.QuestionController;
 import com.quizApp.quizApp.Service.QuizeService;
 import com.quizApp.quizApp.model.Question;
 import com.quizApp.quizApp.model.QuestionWrapper;
+import com.quizApp.quizApp.model.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -29,5 +30,11 @@ public class QuizController {
     public ResponseEntity<List<QuestionWrapper>> getQuestions(@PathVariable Integer id){
         return   quizeService.getQuiz(id);
 
+    }
+
+    @PostMapping("sumbit/{id}")
+    public ResponseEntity<Integer> SubmitQuiz(@PathVariable Integer id,@RequestBody List<Response>responses){
+        System.out.println("responsesPP: "+responses);
+        return  quizeService.calculateResult(id,responses);
     }
 }
